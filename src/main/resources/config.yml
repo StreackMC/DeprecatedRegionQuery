@@ -1,0 +1,11 @@
+# RegionQuery 配置文件
+# 该文件在插件首次启动时自动生成
+
+# HTTP 监听端点
+endpoint: "/api/region/query"
+
+# 世界容器目录（相对于服务器根目录 server.jar 所在位置）
+world-container: "world"
+
+# InhabitedTime 阈值（单位：游戏刻，默认 24000 刻 = 1 游戏日）
+inhabited-time-threshold: 24000

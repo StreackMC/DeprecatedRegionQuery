@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.streackmc</groupId>
+    <artifactId>RegionQuery</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>RegionQuery</name>
+    <description>A lightweight plugin to query InhabitedTime from region files</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <repositories>
+        <!-- PaperMC repository for Paper API -->
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Paper API 1.20.1 -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- StreackLib dependency -->
+        <dependency>
+            <groupId>com.github.streackmc</groupId>
+            <artifactId>StreackLib</artifactId>
+            <version>0.5.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- NBT library (querz NBT) -->
+        <dependency>
+            <groupId>com.github.querz</groupId>
+            <artifactId>nbt</artifactId>
+            <version>6.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
