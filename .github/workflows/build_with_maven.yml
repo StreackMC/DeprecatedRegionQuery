@@ -39,5 +39,5 @@ jobs:
       - name: Upload built jar
         uses: actions/upload-artifact@v4
         with:
-          name: StreackLib-git@${{ steps.git.outputs.sha }}
+          name: DeprecatedRegionQuery-git@${{ steps.git.outputs.sha }}
           path: target/*.jar
