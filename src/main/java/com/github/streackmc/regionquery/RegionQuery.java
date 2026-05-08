@@ -17,7 +17,10 @@ import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
-import static fi.iki.elonen.NanoHTTPD.newFixedLengthResponse;
+import org.nanohttpd.protocols.http.IHTTPSession;
+import org.nanohttpd.protocols.http.request.Method;
+import org.nanohttpd.protocols.http.response.Response;
+import org.nanohttpd.protocols.http.response.Status;
 
 /**
  * RegionQuery —— 轻量级区域文件InhabitedTime查询插件（修正版 + 详细日志）
@@ -26,6 +29,7 @@ import static fi.iki.elonen.NanoHTTPD.newFixedLengthResponse;
  * 并与配置的阈值比较，返回 {destroy: true/false} 的JSON。
  * 同时输出完整的解析过程日志（坐标、文件、中间结果、最终判定）。
  * </p>
+ * @author AI生成
  */
 public class RegionQuery extends JavaPlugin {
 
@@ -57,9 +61,9 @@ public class RegionQuery extends JavaPlugin {
 
         try {
             httpServer.registerHandler(endpoint, session -> {
-                if (!fi.iki.elonen.NanoHTTPD.Method.GET.equals(session.getMethod())) {
-                    return newFixedLengthResponse(
-                            fi.iki.elonen.NanoHTTPD.Response.Status.METHOD_NOT_ALLOWED,
+                if (!Method.GET.equals(session.getMethod())) {
+                    return Response.newFixedLengthResponse(
+                            Status.METHOD_NOT_ALLOWED,
                             "text/plain",
                             "Method GET Allowed Only."
                     );
@@ -71,8 +75,8 @@ public class RegionQuery extends JavaPlugin {
                     String zStr = params.get("z");
 
                     if (xStr == null || zStr == null) {
-                        return newFixedLengthResponse(
-                                fi.iki.elonen.NanoHTTPD.Response.Status.BAD_REQUEST,
+                        return Response.newFixedLengthResponse(
+                                Status.BAD_REQUEST,
                                 "application/json",
                                 "{\"error\": \"Missing x or z parameter\"}"
                         );
@@ -83,8 +87,8 @@ public class RegionQuery extends JavaPlugin {
                         x = Integer.parseInt(xStr);
                         z = Integer.parseInt(zStr);
                     } catch (NumberFormatException e) {
-                        return newFixedLengthResponse(
-                                fi.iki.elonen.NanoHTTPD.Response.Status.BAD_REQUEST,
+                        return Response.newFixedLengthResponse(
+                                Status.BAD_REQUEST,
                                 "application/json",
                                 "{\"error\": \"x and z must be integers\"}"
                         );
@@ -130,16 +134,16 @@ public class RegionQuery extends JavaPlugin {
                     logger.info("===== 解析结束 =====");
 
                     String jsonResponse = String.format("{\"destroy\": %s}", destroy);
-                    return newFixedLengthResponse(
-                            fi.iki.elonen.NanoHTTPD.Response.Status.OK,
+                    return Response.newFixedLengthResponse(
+                            Status.OK,
                             "application/json",
                             jsonResponse
                     );
 
                 } catch (Exception e) {
                     logger.log(Level.SEVERE, "处理请求时发生异常", e);
-                    return newFixedLengthResponse(
-                            fi.iki.elonen.NanoHTTPD.Response.Status.INTERNAL_ERROR,
+                    return Response.newFixedLengthResponse(
+                            Status.INTERNAL_ERROR,
                             "application/json",
                             "{\"error\": \"Internal server error\"}"
                     );
