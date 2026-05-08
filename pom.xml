@@ -18,13 +18,24 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-    <repositories>
-        <!-- PaperMC repository for Paper API -->
-        <repository>
-            <id>papermc</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>paper-repo</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+    <repository>
+      <id>bstats-repo</id>
+      <url>https://repo.codemc.org/repository/maven-public</url>
+    </repository>
+  </repositories>
 
     <dependencies>
         <!-- Paper API 1.20.1 -->
